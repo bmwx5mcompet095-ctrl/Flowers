@@ -6,7 +6,7 @@ import { Catalog } from './components/Catalog';
 import { WhyUs } from './components/WhyUs';
 import { HowToOrder } from './components/HowToOrder';
 import { DeliveryAndPayment } from './components/DeliveryAndPayment';
-import { Reviews } from './components/Reviews';
+import { FAQ } from './components/FAQ';
 import { Contacts } from './components/Contacts';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
@@ -53,8 +53,8 @@ export default function App() {
         {/* 6. Условия доставки и способы оплаты */}
         <DeliveryAndPayment />
 
-        {/* 7. Реальные отзывы гостей (скрывается, если в data.ts нет записей) */}
-        <Reviews />
+        {/* 7. Частые вопросы с плавной анимацией */}
+        <FAQ />
 
         {/* 8. Контакты мастерской и ссылки на мессенджеры */}
         <Contacts />

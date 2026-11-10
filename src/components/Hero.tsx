@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { boutiqueData } from '../data';
 import { BouquetImage } from './BouquetImage';
 import { FadeIn } from './FadeIn';
 
 export const Hero: React.FC = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleScrollToCatalog = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const catalogEl = document.getElementById('catalog');
@@ -12,12 +30,21 @@ export const Hero: React.FC = () => {
     }
   };
 
+  // Мягкий расчет параллакс-сдвига (ограничен, чтобы не ломать верстку)
+  const imageParallaxY = Math.min(Math.max(scrollY * 0.12, 0), 48);
+  const textParallaxY = Math.min(Math.max(scrollY * 0.04, 0), 20);
+
   return (
-    <section className="pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
       <div className="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Текстовая колонка */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          {/* Текстовая колонка с деликатным параллакс-эффектом */}
+          <div
+            className="lg:col-span-7 flex flex-col justify-center transition-transform duration-75 ease-out will-change-transform"
+            style={{
+              transform: `translate3d(0, ${textParallaxY}px, 0)`,
+            }}
+          >
             <FadeIn>
               <div className="inline-block mb-3 sm:mb-4">
                 <span className="text-xs uppercase tracking-[0.2em] text-[#7A2E3A] font-medium">
@@ -26,7 +53,7 @@ export const Hero: React.FC = () => {
               </div>
 
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] text-[#1F1F1F] font-normal leading-[1.08] tracking-tight mb-4 sm:mb-6">
-                {boutiqueData.hero.headingPrefix} {boutiqueData.city}
+                {boutiqueData.hero.headingPrefix} {boutiqueData.cityAccusative || boutiqueData.city}
               </h1>
 
               <p className="text-base sm:text-[17px] text-[#1F1F1F]/80 leading-relaxed font-light mb-7 truncate max-w-xl">
@@ -68,13 +95,18 @@ export const Hero: React.FC = () => {
             </FadeIn>
           </div>
 
-          {/* Большое фото справа (на десктопе) или ниже (на мобильном) */}
+          {/* Фото справа с плавным параллакс-смещением */}
           <div className="lg:col-span-5">
             <FadeIn delay={100}>
-              <div className="relative rounded-2xl overflow-hidden border border-[#E8E2D9] shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+              <div
+                className="relative rounded-2xl overflow-hidden border border-[#E8E2D9] shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-transform duration-75 ease-out will-change-transform"
+                style={{
+                  transform: `translate3d(0, ${imageParallaxY}px, 0)`,
+                }}
+              >
                 <BouquetImage
                   src={boutiqueData.hero.photo}
-                  alt={`Цветочная композиция бутика ${boutiqueData.name}`}
+                  alt={`Цветочная композиция студии ${boutiqueData.name}`}
                   aspectRatio="aspect-[4/5]"
                 />
               </div>

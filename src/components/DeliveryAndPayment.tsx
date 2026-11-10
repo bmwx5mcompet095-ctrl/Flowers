@@ -46,7 +46,9 @@ export const DeliveryAndPayment: React.FC = () => {
                         {zone.time}
                       </div>
                       <div className="sm:col-span-3 sm:text-right font-medium text-[#1F1F1F]">
-                        {zone.price.toLocaleString('ru-RU')} ₽
+                        {typeof zone.price === 'number'
+                          ? `${zone.price.toLocaleString('ru-RU')} ₽`
+                          : zone.price}
                       </div>
                     </div>
                   ))}

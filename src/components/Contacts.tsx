@@ -97,12 +97,12 @@ export const Contacts: React.FC = () => {
                     </a>
 
                     <a
-                      href={boutiqueData.instagramUrl}
+                      href={boutiqueData.vkUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="h-[52px] px-4 rounded-full border border-[#1F1F1F]/20 text-[#1F1F1F] text-sm font-medium tracking-wide hover:border-[#1F1F1F] active:scale-[0.99] transition-all inline-flex items-center justify-center text-center bg-transparent"
                     >
-                      Instagram
+                      ВКонтакте
                     </a>
                   </div>
                 </div>

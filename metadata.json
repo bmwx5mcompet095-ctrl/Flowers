@@ -1,6 +1,6 @@
 {
-  "name": "Цветочный бутик — авторская флористика",
-  "description": "Премиальный одностраничный сайт цветочного бутика в стиле editorial-минимализм с заказом через WhatsApp.",
+  "name": "Цветочная студия NB — Пермь",
+  "description": "Цветочная студия NB в Перми: свежие букеты, корзины, быстрая доставка. ул. Николая Островского, 30.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

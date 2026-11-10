@@ -33,7 +33,7 @@ export const BouquetImage: React.FC<BouquetImageProps> = ({
             decoding="async"
             onError={() => setHasError(true)}
             onLoad={() => setIsLoaded(true)}
-            className={`w-full h-full object-cover transition-opacity duration-300 ${
+            className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-105 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
