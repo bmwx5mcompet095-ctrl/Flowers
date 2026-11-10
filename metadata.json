@@ -1,0 +1,6 @@
+{
+  "name": "Цветочный бутик — авторская флористика",
+  "description": "Премиальный одностраничный сайт цветочного бутика в стиле editorial-минимализм с заказом через WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
